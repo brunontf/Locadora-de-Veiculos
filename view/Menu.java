@@ -20,7 +20,7 @@ public class Menu {
                 MenuPessoa.menu(listaClientes);
             }
             case 1 -> { // sair
-                System.exit(0);
+                VeiculoView.menu();
             }
             case 2 -> { // sair
                 System.exit(0);
