@@ -1,16 +1,22 @@
 package controller;
 
+import database.VeiculoDAO;
 import model.Veiculo;
 import view.VeiculoView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VeiculoController {
-    private List<Veiculo> veiculos;
+    private VeiculoDAO veiculoDAO;
+
+    public VeiculoController() {
+        veiculoDAO = VeiculoDAO.getInstance();
+    }
 
     public void adicionar(Veiculo veiculo) {
         if (veiculo != null) {
-            veiculos.add(veiculo);
+            veiculoDAO.add(veiculo);
         } else {
             VeiculoView.adicionar();
         }
@@ -18,21 +24,21 @@ public class VeiculoController {
 
     public void editar(Veiculo veiculo) {
         if (veiculo != null) {
-
+            veiculoDAO.edit(veiculo);
+        } else {
+            VeiculoView.editar();
         }
-
-        VeiculoView.editar();
     }
 
-    public void buscar(String termo) {
-        if (termo != null) {
-
+    public void buscar(String placa) {
+        if (placa != null) {
+            VeiculoView.listar(veiculoDAO.search(placa));
+        } else {
+            VeiculoView.buscar();
         }
-
-        VeiculoView.buscar();
     }
 
     public void listar() {
-        VeiculoView.listar(veiculos);
+        VeiculoView.listar(veiculoDAO.getAll());
     }
 }

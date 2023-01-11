@@ -1,6 +1,6 @@
 package model;
 
-public class Veiculo {
+public abstract class Veiculo {
     private String placa;
     private float valor;
 
@@ -12,11 +12,5 @@ public class Veiculo {
         this.placa = placa;
     }
 
-    public float getValor() {
-        return valor;
-    }
-
-    public void setValor(float valor) {
-        this.valor = valor;
-    }
+    public abstract float precoDiaria();
 }

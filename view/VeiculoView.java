@@ -22,6 +22,7 @@ public class VeiculoView {
             case 0 -> veiculoController.adicionar(null);
             case 1 -> veiculoController.editar(null);
             case 2 -> veiculoController.buscar(null);
+            case 3 -> veiculoController.listar();
         }
     }
 
@@ -52,13 +53,16 @@ public class VeiculoView {
     }
 
     public static void buscar() {
-        int id = ConsoleUIHelper.askInt("Digite a placa do veiculo");
+        VeiculoController veiculoController = new VeiculoController();
+
+        String placa = ConsoleUIHelper.askSimpleInput("Digite a placa do veiculo");
+        veiculoController.buscar(placa);
     }
 
     public static void listar(List<Veiculo> veiculos) {
         int i = 0;
         for (Veiculo veiculo : veiculos) {
-            System.out.println(i + " - " + veiculo.getPlaca());
+            System.out.println(i + " - " + veiculo.getPlaca() + " : " + veiculo.precoDiaria());
             i++;
         }
         System.out.println();
