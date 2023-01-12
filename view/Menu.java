@@ -7,7 +7,7 @@ import util.ConsoleUIHelper;
 
 public class Menu {
     
-    public static void menu(List<Pessoa> listaClientes) {
+    public static void menu() {
         int opcao = ConsoleUIHelper.askChooseOption("Digite a operação desejada",
          "Menu clientes",
           "Menu veiculos",
@@ -17,15 +17,15 @@ public class Menu {
 
         switch (opcao) {
             case 0 -> { // chama menu pessoa
-                MenuPessoa.menu(listaClientes);
+                MenuPessoa.menu();
             }
-            case 1 -> { // sair
+            case 1 -> { // chama menu veiculo
                 VeiculoView.menu();
             }
-            case 2 -> { // sair
+            case 2 -> { // chama menu agencia
                 System.exit(0);
             }
-            case 3 -> { // sair
+            case 3 -> { // chama menu aluguel
                 System.exit(0);
             }
             case 4 -> { // sair

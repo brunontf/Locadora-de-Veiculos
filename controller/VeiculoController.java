@@ -4,9 +4,6 @@ import database.VeiculoDAO;
 import model.Veiculo;
 import view.VeiculoView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class VeiculoController {
     private VeiculoDAO veiculoDAO;
 
