@@ -23,24 +23,21 @@ public class App {
         // System.out.println(temAgenciasDuplicadas(listaAgencias, samamVeiculos1));
         // System.out.println(temAgenciasDuplicadas(listaAgencias, samamVeiculos2));
 
-        List<Pessoa> listaClientes = new ArrayList<>();
-
-        Pessoa joao = new PessoaFisica("joao","111",123);
-        Pessoa jose = new PessoaJuridica("jose","222",321);
-        listaClientes.add(joao);
-        listaClientes.add(jose);
-
+        
+        
         do  {
             ConsoleUIHelper.drawHeader("LOCA-CAR", 80);
-            Menu.menu(listaClientes);
+            Menu.menu();
             System.out.println();
         }
         while (true);
-
+        
     }
-
+    
     public static boolean temAgenciasDuplicadas(List<Agencia> listaAgencias, Agencia agencia){
         return listaAgencias.stream().anyMatch(ag -> ag.equals(agencia));
     }
     
+    // Pessoa joao = new PessoaFisica("joao","111",123);
+    // Pessoa jose = new PessoaJuridica("jose","222",321);
 }
