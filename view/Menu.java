@@ -23,7 +23,7 @@ public class Menu {
                 VeiculoView.menu();
             }
             case 2 -> { // chama menu agencia
-                System.exit(0);
+                AgenciaView.menu();
             }
             case 3 -> { // chama menu aluguel
                 System.exit(0);

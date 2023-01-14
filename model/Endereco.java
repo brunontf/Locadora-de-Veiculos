@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 public class Endereco {
     private String cep;
     private String logradouro;
@@ -60,5 +62,29 @@ public class Endereco {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Endereco endereco = (Endereco) o;
+        return Objects.equals(cep.toLowerCase(), endereco.cep.toLowerCase())
+                && Objects.equals(logradouro.toLowerCase(), endereco.logradouro.toLowerCase())
+                && Objects.equals(numero.toLowerCase(), endereco.numero.toLowerCase())
+                && Objects.equals(cidade.toLowerCase(), endereco.cidade.toLowerCase())
+                && Objects.equals(estado.toLowerCase(), endereco.estado.toLowerCase());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cep, logradouro, numero, cidade, estado);
+    }
+
+    @Override
+    public String toString() {
+        return ("logradouro=" + logradouro + ", numero=" + numero +
+                ", cidade=" + cidade + ", estado=" + estado);
     }
 }
