@@ -1,6 +1,7 @@
 package view;
 
 import controller.VeiculoController;
+import database.VeiculoDAO;
 import model.*;
 import util.ConsoleUIHelper;
 
@@ -44,12 +45,27 @@ public class VeiculoView {
         }
 
         String placa = ConsoleUIHelper.askSimpleInput("Digite a placa do veiculo");
+        String cor = ConsoleUIHelper.askSimpleInput("Digite a cor do veiculo");
         veiculo.setPlaca(placa);
+        veiculo.setCor(cor);
         veiculoController.adicionar(veiculo);
     }
 
     public static void editar() {
-        int id = ConsoleUIHelper.askInt("Digite a placa do veiculo");
+        VeiculoController veiculoController = new VeiculoController();
+        VeiculoDAO veiculoDAO = VeiculoDAO.getInstance();
+        Veiculo veiculo;
+
+        String placa = ConsoleUIHelper.askSimpleInput("Digite a placa do veiculo");
+        veiculo = veiculoDAO.getByPlaca(placa);
+
+        if (veiculo == null) return;
+        exibir(veiculo);
+
+        String cor = ConsoleUIHelper.askSimpleInput("Digite a nova cor do veiculo");
+        veiculo.setCor(cor);
+
+        veiculoController.editar(veiculo);
     }
 
     public static void buscar() {
@@ -62,9 +78,13 @@ public class VeiculoView {
     public static void listar(List<Veiculo> veiculos) {
         int i = 0;
         for (Veiculo veiculo : veiculos) {
-            System.out.println(i + " - " + veiculo.getPlaca() + " : " + veiculo.precoDiaria());
+            System.out.println(i + " - " + veiculo.getPlaca() + " " + veiculo.getCor() + " : " + veiculo.precoDiaria());
             i++;
         }
         System.out.println();
+    }
+
+    public static void exibir(Veiculo veiculo) {
+        System.out.println(veiculo.getPlaca() + " " + veiculo.getCor() + " : " + veiculo.precoDiaria());
     }
 }
