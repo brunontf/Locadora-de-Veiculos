@@ -1,14 +1,9 @@
 package controller;
 
-import java.util.List;
+import java.io.IOException;
 
 import database.PessoaDAO;
 import model.Pessoa;
-import model.PessoaFisica;
-import model.PessoaJuridica;
-import util.ConsoleUIHelper;
-import view.Menu;
-import view.MenuPessoa;
 import view.PessoaView;
 
 public class PessoaController {
@@ -51,6 +46,16 @@ public class PessoaController {
             Pessoa pessoa = pessoaDAO.getListaClientes().get(PessoaView.askId());
             PessoaView.imprimirCliente(pessoa);
         }
+    }
+
+    public void salvarListaClientes() throws IOException {
+        pessoaDAO.salvarListaClientes();
+        pessoaDAO.salvarListaClientesJSON();
+    }
+
+    public void carregarListaClientes() throws ClassNotFoundException, IOException {
+        // pessoaDAO.carregarListaClientes();
+        pessoaDAO.carregarListaClientesJSON();
     }
     
 }

@@ -1,9 +1,8 @@
 package model;
 
-public class PessoaFisica extends Pessoa {
-
+public class PessoaFisica extends Pessoa{
     private Integer cpf;
-    
+
     public PessoaFisica(String nome, String telefone, Integer cpf){
         super(nome, telefone);
         this.cpf= cpf;

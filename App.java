@@ -6,12 +6,13 @@ import model.PessoaJuridica;
 import util.ConsoleUIHelper;
 import view.Menu;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class App {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException, IOException {
         List<Agencia> listaAgencias = new ArrayList<Agencia>();
 
         Endereco endereco1 = new Endereco("Rua XV de novembro");
