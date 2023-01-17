@@ -50,12 +50,12 @@ public class PessoaController {
 
     public void salvarListaClientes() throws IOException {
         pessoaDAO.salvarListaClientes();
-        pessoaDAO.salvarListaClientesJSON();
+        //pessoaDAO.salvarListaClientesJSON();
     }
 
     public void carregarListaClientes() throws ClassNotFoundException, IOException {
-        // pessoaDAO.carregarListaClientes();
-        pessoaDAO.carregarListaClientesJSON();
+        pessoaDAO.carregarListaClientes();
+        //pessoaDAO.carregarListaClientesJSON();
     }
     
 }
