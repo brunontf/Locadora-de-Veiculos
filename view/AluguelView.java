@@ -1,5 +1,7 @@
 package view;
 
+import java.util.List;
+
 import controller.AgenciaController;
 import controller.AluguelController;
 import controller.PessoaController;
@@ -26,7 +28,7 @@ public class AluguelView {
             switch (opcao) {
                 case 0 -> aluguelController.alugar(null);
                 case 1 -> aluguelController.devolver(null);
-                // case 2 -> aluguelController.listarAlugueis(null);
+                case 2 -> aluguelController.listar();
                 case 3 -> naoRetornarAoMenuPrincipal = false;
             }
 
@@ -41,7 +43,7 @@ public class AluguelView {
         VeiculoController  veiculoController = new VeiculoController();
 
 
-        System.out.println("Listar os dados de cliente, agencia e cliente e escolher uma opcao");
+        // System.out.println("Listar os dados de cliente, agencia e cliente e escolher uma opcao");
 
         pessoaController.listarClientes();
         int clientePosicao = ConsoleUIHelper.askInt("Selecione um cliente");
@@ -54,12 +56,10 @@ public class AluguelView {
         int agenciaDevolucaoPosicao = ConsoleUIHelper.askInt("Selecione a agencia de devolucao");
         
         aluguelController.alugar(new Aluguel(
-            AgenciaDAO.getInstance().getAll().get(agenciaPosicao).getNome(), // subst nome pelo ID
+            AgenciaDAO.getInstance().getAll().get(agenciaPosicao).getId(),
             VeiculoDAO.getInstance().getAll().get(veiculoPosicao).getPlaca(),
             pessoaController.retornaIdCliente(clientePosicao),
-            AgenciaDAO.getInstance().getAll().get(agenciaDevolucaoPosicao).getNome() // subst nome pelo ID
-
-
+            AgenciaDAO.getInstance().getAll().get(agenciaDevolucaoPosicao).getId() 
         ));
     }
     
@@ -74,6 +74,14 @@ public class AluguelView {
     public static void selecionarData() {
         System.out.println("Selecione a data");
         System.out.println("Selecione o horario");
-        
+    }
+
+    public static void listar(List<Aluguel> alugueis) {
+        int i = 0;
+        for (Aluguel aluguel : alugueis) {
+            System.out.println(i + " - " + aluguel.getVeiculoId() + " - " + aluguel.getAgenciaId() + " - " + aluguel.getClienteId());
+            i++;
+        }
+        System.out.println();
     }
 }

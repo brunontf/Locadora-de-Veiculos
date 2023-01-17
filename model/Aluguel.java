@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Aluguel {
+public class Aluguel implements Serializable {
     private String id;
     private String veiculoId;
     private String agenciaId;

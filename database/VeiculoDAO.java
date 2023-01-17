@@ -3,11 +3,17 @@ package database;
 import exceptions.DuplicatedRegisterException;
 import model.Veiculo;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class VeiculoDAO {
+public class VeiculoDAO implements Serializable {
     private static VeiculoDAO instance;
     private List<Veiculo> veiculos;
     private VeiculoDAO() {
@@ -47,5 +53,24 @@ public class VeiculoDAO {
                 .filter(v -> v.getPlaca().equalsIgnoreCase(placa))
                 .findFirst()
                 .orElse(null);
+    }
+    
+
+    public void setVeiculos(List<Veiculo> veiculos) {
+        this.veiculos = veiculos;
+    }
+
+    public void salvarVeiculos() throws IOException {
+        FileOutputStream fos = new FileOutputStream("database\\lista_de_veiculos.ser");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(veiculos);
+        oos.close();
+    }
+
+    public void carregarVeiculos() throws IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream("database\\lista_de_veiculos.ser");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        setVeiculos((List<Veiculo>) ois.readObject());
+        ois.close();
     }
 }

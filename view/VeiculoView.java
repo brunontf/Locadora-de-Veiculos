@@ -5,11 +5,12 @@ import database.VeiculoDAO;
 import model.*;
 import util.ConsoleUIHelper;
 
+import java.io.IOException;
 import java.util.List;
 
 public class VeiculoView {
 
-    public static void menu() {
+    public static void menu() throws IOException, ClassNotFoundException {
         VeiculoController veiculoController = new VeiculoController();
         boolean naoRetornarAoMenuPrincipal = true;
 
@@ -19,6 +20,8 @@ public class VeiculoView {
             "Editar veiculo",
             "Buscar veiculo",
             "Listar veiculos",
+            "Salvar veiculos",
+            "Carregar veículos",
             "Retornar ao menu");
             
             switch (opcao) {
@@ -26,7 +29,9 @@ public class VeiculoView {
                 case 1 -> veiculoController.editar(null);
                 case 2 -> veiculoController.buscar(null);
                 case 3 -> veiculoController.listar();
-                case 4 -> naoRetornarAoMenuPrincipal = false;
+                case 4 -> veiculoController.salvarVeiculos();
+                case 5 -> veiculoController.carregarVeiculos();
+                case 6 -> naoRetornarAoMenuPrincipal = false;
             }
         } while (naoRetornarAoMenuPrincipal);
     }

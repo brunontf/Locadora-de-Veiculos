@@ -47,6 +47,9 @@ public class Menu {
         VeiculoController  veiculoController = new VeiculoController();
 
         pessoaController.carregarListaClientes();
+        agenciaController.carregarListaAgencias();
+        veiculoController.carregarVeiculos();
+        aluguelController.carregarAlugueis();
 
     }
 }

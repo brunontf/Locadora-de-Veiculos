@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.IOException;
+
 import database.VeiculoDAO;
 import exceptions.DuplicatedRegisterException;
 import model.Veiculo;
@@ -42,5 +44,13 @@ public class VeiculoController {
 
     public void listar() {
         VeiculoView.listar(veiculoDAO.getAll());
+    }
+
+    public void salvarVeiculos() throws IOException {
+        veiculoDAO.salvarVeiculos();
+    }
+
+    public void carregarVeiculos() throws IOException, ClassNotFoundException {
+        veiculoDAO.carregarVeiculos();
     }
 }

@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Veiculo {
+public abstract class Veiculo implements Serializable {
     private String placa;
     private String cor;
 
