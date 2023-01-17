@@ -104,6 +104,13 @@ public class PessoaDAO implements Serializable {
         ois.close();
     }
 
+    public String retornaIdCliente(int posicao) {
+        String id = String.valueOf((listaClientes.get(posicao).getClass() == PessoaFisica.class ) ?
+            ((PessoaFisica) listaClientes.get(posicao)).getCpf() :
+            ((PessoaJuridica) listaClientes.get(posicao)).getCnpj());
+        return id;
+    }
+
     //public void salvarListaClientesJSON() throws IOException {
         // ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
         // Java object to JSON file

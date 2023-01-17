@@ -57,5 +57,9 @@ public class PessoaController {
         pessoaDAO.carregarListaClientes();
         //pessoaDAO.carregarListaClientesJSON();
     }
+
+    public String retornaIdCliente(int posicao) {
+        return pessoaDAO.retornaIdCliente(posicao);
+    }
     
 }

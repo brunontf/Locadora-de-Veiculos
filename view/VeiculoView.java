@@ -11,20 +11,24 @@ public class VeiculoView {
 
     public static void menu() {
         VeiculoController veiculoController = new VeiculoController();
+        boolean naoRetornarAoMenuPrincipal = true;
 
-        int opcao = ConsoleUIHelper.askChooseOption("Digite a operação desejada",
-                "Adicionar um novo veiculo",
-                "Editar veiculo",
-                "Buscar veiculo",
-                "Listar veiculos",
-                "Retornar ao menu");
-
-        switch (opcao) {
-            case 0 -> veiculoController.adicionar(null);
-            case 1 -> veiculoController.editar(null);
-            case 2 -> veiculoController.buscar(null);
-            case 3 -> veiculoController.listar();
-        }
+        do {
+            int opcao = ConsoleUIHelper.askChooseOption("Digite a operação desejada",
+            "Adicionar um novo veiculo",
+            "Editar veiculo",
+            "Buscar veiculo",
+            "Listar veiculos",
+            "Retornar ao menu");
+            
+            switch (opcao) {
+                case 0 -> veiculoController.adicionar(null);
+                case 1 -> veiculoController.editar(null);
+                case 2 -> veiculoController.buscar(null);
+                case 3 -> veiculoController.listar();
+                case 4 -> naoRetornarAoMenuPrincipal = false;
+            }
+        } while (naoRetornarAoMenuPrincipal);
     }
 
     public static void adicionar() {
@@ -32,10 +36,10 @@ public class VeiculoView {
         VeiculoController veiculoController = new VeiculoController();
 
         int opcao = ConsoleUIHelper.askChooseOption("Digite o tipo de veiculo",
-                "Carro",
-                "Caminhao",
-                "Moto",
-                "Retornar ao menu");
+            "Carro",
+            "Caminhao",
+            "Moto",
+            "Retornar ao menu");
 
         switch (opcao) {
             case 0 -> veiculo = new Carro();

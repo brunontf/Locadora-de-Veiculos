@@ -10,20 +10,24 @@ import java.util.List;
 public class AgenciaView {
     public static void menu(){
         AgenciaController agenciaController = new AgenciaController();
+        boolean naoRetornarAoMenuPrincipal = true;
 
-        int opcao = ConsoleUIHelper.askChooseOption("Digite a opção desejada",
-                "Adicionar uma nova agência",
-                "Editar agência",
-                "Buscar agência",
-                "Listar agências",
-                "Retornar ao menu"
-                );
-        switch (opcao){
-            case 0 -> agenciaController.adicionar(null);
-            case 1 -> agenciaController.editar(null);
-            case 2 -> agenciaController.buscar(null, null);
-            case 3 -> agenciaController.listar();
-        }
+        do{
+            int opcao = ConsoleUIHelper.askChooseOption("Digite a opção desejada",
+            "Adicionar uma nova agência",
+            "Editar agência",
+            "Buscar agência",
+            "Listar agências",
+            "Retornar ao menu"
+            );
+            switch (opcao){
+                case 0 -> agenciaController.adicionar(null);
+                case 1 -> agenciaController.editar(null);
+                case 2 -> agenciaController.buscar(null, null);
+                case 3 -> agenciaController.listar();
+                case 4 -> naoRetornarAoMenuPrincipal = false;
+            }
+        } while (naoRetornarAoMenuPrincipal);
     }
 
     public static void adicionar(){

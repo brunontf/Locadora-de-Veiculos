@@ -1,14 +1,18 @@
 package view;
 
 import java.io.IOException;
-import java.util.List;
 
-import model.Pessoa;
+import controller.AgenciaController;
+import controller.AluguelController;
+import controller.PessoaController;
+import controller.VeiculoController;
 import util.ConsoleUIHelper;
 
 public class Menu {
-    
+
     public static void menu() throws ClassNotFoundException, IOException {
+        carregarDataBase();
+
         int opcao = ConsoleUIHelper.askChooseOption("Digite a operação desejada",
          "Menu clientes",
           "Menu veiculos",
@@ -34,5 +38,15 @@ public class Menu {
             }
 
         }
+    }
+
+    private static void carregarDataBase() throws ClassNotFoundException, IOException {
+        AluguelController aluguelController = new AluguelController();
+        PessoaController pessoaController = new PessoaController();
+        AgenciaController agenciaController = new AgenciaController();
+        VeiculoController  veiculoController = new VeiculoController();
+
+        pessoaController.carregarListaClientes();
+
     }
 }

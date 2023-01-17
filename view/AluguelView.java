@@ -1,43 +1,79 @@
 package view;
 
+import controller.AgenciaController;
 import controller.AluguelController;
+import controller.PessoaController;
+import controller.VeiculoController;
+import database.AgenciaDAO;
+import database.PessoaDAO;
+import database.VeiculoDAO;
 import model.Aluguel;
+import model.Pessoa;
+import model.PessoaFisica;
 import util.ConsoleUIHelper;
 
 public class AluguelView {
-    public static void menu(){
+    public static void menu() {
         AluguelController aluguelController = new AluguelController();
+        boolean naoRetornarAoMenuPrincipal = true;
 
-        int opcao = ConsoleUIHelper.askChooseOption("Digite a opção desejada",
-                "Alugar um veiculo",
-                "Devolver um veiculo",
-                "Retornar ao menu"
-        );
-        switch (opcao){
-            case 0 -> aluguelController.alugar(null);
-            case 1 -> aluguelController.devolver(null);
-        }
+        do {
+            int opcao = ConsoleUIHelper.askChooseOption("Digite a opção desejada",
+                    "Alugar um veiculo",
+                    "Devolver um veiculo",
+                    "Listar alugueis ativos",
+                    "Retornar ao menu");
+            switch (opcao) {
+                case 0 -> aluguelController.alugar(null);
+                case 1 -> aluguelController.devolver(null);
+                // case 2 -> aluguelController.listarAlugueis(null);
+                case 3 -> naoRetornarAoMenuPrincipal = false;
+            }
+
+        } while (naoRetornarAoMenuPrincipal);
+
     }
 
     public static void alugar() {
         AluguelController aluguelController = new AluguelController();
+        PessoaController pessoaController = new PessoaController();
+        AgenciaController agenciaController = new AgenciaController();
+        VeiculoController  veiculoController = new VeiculoController();
+
 
         System.out.println("Listar os dados de cliente, agencia e cliente e escolher uma opcao");
-        System.out.println("Selecione um cliente");
-        System.out.println("Selecione a agencia");
-        System.out.println("Selecione o veiculo");
-        System.out.println("Selecione a data");
-        System.out.println("Selecione o horario");
-        System.out.println("Selecione a agencia de devolucao");
 
-        aluguelController.alugar(new Aluguel());
+        pessoaController.listarClientes();
+        int clientePosicao = ConsoleUIHelper.askInt("Selecione um cliente");
+        agenciaController.listar();
+        int agenciaPosicao = ConsoleUIHelper.askInt("Selecione a agencia");
+        veiculoController.listar();
+        int veiculoPosicao = ConsoleUIHelper.askInt("Selecione o veiculo");
+        selecionarData();
+        agenciaController.listar();
+        int agenciaDevolucaoPosicao = ConsoleUIHelper.askInt("Selecione a agencia de devolucao");
+        
+        aluguelController.alugar(new Aluguel(
+            AgenciaDAO.getInstance().getAll().get(agenciaPosicao).getNome(), // subst nome pelo ID
+            VeiculoDAO.getInstance().getAll().get(veiculoPosicao).getPlaca(),
+            pessoaController.retornaIdCliente(clientePosicao),
+            AgenciaDAO.getInstance().getAll().get(agenciaDevolucaoPosicao).getNome() // subst nome pelo ID
+
+
+        ));
     }
-
+    
     public static void devolver() {
         AluguelController aluguelController = new AluguelController();
-
+        
         System.out.println("listar alugueis abertos e escolher um pra devolver");
-
+        
         aluguelController.devolver(new Aluguel());
+    }
+    
+    public static void selecionarData() {
+        System.out.println("Selecione a data");
+        System.out.println("Selecione o horario");
+        
     }
 }
