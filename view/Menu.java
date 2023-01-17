@@ -26,7 +26,7 @@ public class Menu {
                 AgenciaView.menu();
             }
             case 3 -> { // chama menu aluguel
-                System.exit(0);
+                AluguelView.menu();
             }
             case 4 -> { // sair
                 System.exit(0);
