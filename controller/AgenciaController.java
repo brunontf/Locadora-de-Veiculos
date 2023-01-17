@@ -4,6 +4,8 @@ import database.AgenciaDAO;
 import model.Agencia;
 import view.AgenciaView;
 
+import java.io.IOException;
+
 public class AgenciaController {
     private AgenciaDAO agenciaDAO;
 
@@ -35,5 +37,12 @@ public class AgenciaController {
     }
     public void listar(){
         AgenciaView.listar(agenciaDAO.getAll());
+    }
+
+    public void salvarListaAgencias() throws IOException {
+        agenciaDAO.salvarListaAgencias();
+    }
+    public void carregarListaAgencias() throws IOException, ClassNotFoundException {
+        agenciaDAO.carregarListaAgencias();
     }
 }

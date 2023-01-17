@@ -5,10 +5,11 @@ import model.Agencia;
 import model.Endereco;
 import util.ConsoleUIHelper;
 
+import java.io.IOException;
 import java.util.List;
 
 public class AgenciaView {
-    public static void menu(){
+    public static void menu() throws IOException, ClassNotFoundException {
         AgenciaController agenciaController = new AgenciaController();
 
         int opcao = ConsoleUIHelper.askChooseOption("Digite a opção desejada",
@@ -16,6 +17,8 @@ public class AgenciaView {
                 "Editar agência",
                 "Buscar agência",
                 "Listar agências",
+                "Salvar lista de agências",
+                "Carregar lista de agências",
                 "Retornar ao menu"
                 );
         switch (opcao){
@@ -23,6 +26,8 @@ public class AgenciaView {
             case 1 -> agenciaController.editar(null);
             case 2 -> agenciaController.buscar(null, null);
             case 3 -> agenciaController.listar();
+            case 4 -> agenciaController.salvarListaAgencias();
+            case 5 -> agenciaController.carregarListaAgencias();
         }
     }
 

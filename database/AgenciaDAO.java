@@ -2,11 +2,12 @@ package database;
 
 import model.Agencia;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AgenciaDAO {
+public class AgenciaDAO implements Serializable {
     private static AgenciaDAO instance;
     private List<Agencia> agencias;
 
@@ -44,5 +45,26 @@ public class AgenciaDAO {
                         .contains(logradouro.toLowerCase())
                 )
                 .collect(Collectors.toList());
+    }
+
+    public void salvarListaAgencias() throws IOException {
+        FileOutputStream fos = new FileOutputStream("./database/lista_de_agencias.ser");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(agencias);
+        oos.close();
+    }
+
+    public void carregarListaAgencias() throws  IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream("./database/lista_de_agencias.ser");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        setListaAgencias((List<Agencia>) ois.readObject());
+        ois.close();
+    }
+
+    public List<Agencia> getListaAgencias() {
+        return agencias;
+    }
+    public void setListaAgencias(List<Agencia> agencias) {
+        this.agencias = agencias;
     }
 }

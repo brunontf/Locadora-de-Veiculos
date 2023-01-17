@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Agencia {
+public class Agencia implements Serializable {
     //private List<Veiculo> veiculos;
     private String nome;
     private Endereco endereco;
