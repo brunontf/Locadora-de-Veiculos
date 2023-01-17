@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -106,21 +105,18 @@ public class PessoaDAO implements Serializable {
     }
 
     public void salvarListaClientesJSON() throws IOException {
-        ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+        // ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
         // Java object to JSON file
-        mapper.writeValue(new File("database\\lista_de_clientes.json"), listaClientes);
-        
-        //Java object to JSON string, pretty-print
-        // String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(listaClientes);
+        // mapper.writeValue(new File("database\\lista_de_clientes.json"), listaClientes);
     }
 
     public void carregarListaClientesJSON() throws StreamReadException, DatabindException, IOException {
-        ObjectMapper mapper = new ObjectMapper();
+        // ObjectMapper mapper = new ObjectMapper();
 
-        //JSON file to Java object
-        List<Pessoa> listaPessoas = mapper.readValue(new File("database\\lista_de_clientes.json"), 
-        mapper.getTypeFactory().constructCollectionType(List.class, Pessoa.class));
-        System.out.println(listaPessoas);
+        // //JSON file to Java object
+        // List<Pessoa> listaPessoas = mapper.readValue(new File("database\\lista_de_clientes.json"), 
+        // mapper.getTypeFactory().constructCollectionType(List.class, Pessoa.class));
+        // System.out.println(listaPessoas);
         // setListaClientes(listaPessoas);
 
         // // //JSON string to Java Object

@@ -2,9 +2,9 @@ package model;
 
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-@JsonIgnoreProperties(ignoreUnknown = true)
+// import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+// import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+// @JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class Pessoa implements Serializable {
 
     private String nome;
