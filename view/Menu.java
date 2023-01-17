@@ -1,5 +1,6 @@
 package view;
 
+import java.io.IOException;
 import java.util.List;
 
 import model.Pessoa;
@@ -7,7 +8,7 @@ import util.ConsoleUIHelper;
 
 public class Menu {
     
-    public static void menu() {
+    public static void menu() throws ClassNotFoundException, IOException {
         int opcao = ConsoleUIHelper.askChooseOption("Digite a operação desejada",
          "Menu clientes",
           "Menu veiculos",

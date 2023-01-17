@@ -1,11 +1,18 @@
 package model;
 
-public abstract class Pessoa {
+import java.io.Serializable;
+
+// import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+// import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+// @JsonIgnoreProperties(ignoreUnknown = true)
+public abstract class Pessoa implements Serializable {
 
     private String nome;
     private String telefone;
 
-    Pessoa(String nome, String telefone){
+    public Pessoa(){}
+
+    public Pessoa(String nome, String telefone){
         this.nome = nome;
         this.telefone = telefone;
     }
@@ -18,6 +25,5 @@ public abstract class Pessoa {
         return telefone;
     }
 
-    
     
 }

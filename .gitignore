@@ -1,5 +1,6 @@
 *.class
 .vscode/
+libraries/
 
 # Ignore intellij files
 *.iml

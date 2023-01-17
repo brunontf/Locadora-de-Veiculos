@@ -1,6 +1,6 @@
 package model;
 
-public class PessoaJuridica extends Pessoa {
+public class PessoaJuridica extends Pessoa{
 
     private Integer cnpj;
     
