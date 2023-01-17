@@ -104,13 +104,13 @@ public class PessoaDAO implements Serializable {
         ois.close();
     }
 
-    public void salvarListaClientesJSON() throws IOException {
+    //public void salvarListaClientesJSON() throws IOException {
         // ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
         // Java object to JSON file
         // mapper.writeValue(new File("database\\lista_de_clientes.json"), listaClientes);
     }
 
-    public void carregarListaClientesJSON() throws StreamReadException, DatabindException, IOException {
+    //public void carregarListaClientesJSON() throws StreamReadException, DatabindException, IOException {
         // ObjectMapper mapper = new ObjectMapper();
 
         // //JSON file to Java object
