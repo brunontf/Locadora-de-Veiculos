@@ -1,6 +1,7 @@
 package controller;
 
 import database.VeiculoDAO;
+import exceptions.DuplicatedRegisterException;
 import model.Veiculo;
 import view.VeiculoView;
 
@@ -13,7 +14,11 @@ public class VeiculoController {
 
     public void adicionar(Veiculo veiculo) {
         if (veiculo != null) {
-            veiculoDAO.add(veiculo);
+            try {
+                veiculoDAO.add(veiculo);
+            } catch (DuplicatedRegisterException e) {
+                System.out.println("!!! " + e.getMessage() + " !!!");
+            }
         } else {
             VeiculoView.adicionar();
         }
