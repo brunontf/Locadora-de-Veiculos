@@ -108,7 +108,7 @@ public class PessoaDAO implements Serializable {
         // ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
         // Java object to JSON file
         // mapper.writeValue(new File("database\\lista_de_clientes.json"), listaClientes);
-    }
+    //}
 
     //public void carregarListaClientesJSON() throws StreamReadException, DatabindException, IOException {
         // ObjectMapper mapper = new ObjectMapper();
@@ -121,5 +121,5 @@ public class PessoaDAO implements Serializable {
 
         // // //JSON string to Java Object
         // Staff obj = mapper.readValue("{'name' : 'mkyong'}", Staff.class);
-    }
+    //}
 }
