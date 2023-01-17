@@ -22,11 +22,18 @@ public class AgenciaDAO implements Serializable {
         return instance;
     }
 
+    public Agencia getAgenciaById(String id){
+        return agencias.stream()
+                .filter(agencia -> agencia.getId().equals(id))
+                .toList()
+                .get(0);
+    }
+
     public List<Agencia> getAll(){
         return this.agencias;
     }
     public void add(Agencia agencia){
-        if(!agencias.stream().anyMatch(ag -> ag.equals(agencia))){
+        if(agencias.stream().noneMatch(ag -> ag.equals(agencia))){
             this.agencias.add(agencia);
             return ;
         }

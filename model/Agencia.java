@@ -2,20 +2,25 @@ package model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 public class Agencia implements Serializable {
     //private List<Veiculo> veiculos;
     private String nome;
+    private String id;
     private Endereco endereco;
 
     public Agencia(){
-
+        String uniqueId = UUID.randomUUID().toString();
+        id = uniqueId;
     }
 
     public Agencia(String nome){
+        this();
         this.nome = nome;
     }
     public Agencia(String nome, Endereco endereco){
+        this();
         this.nome = nome;
         this.endereco = endereco;
     }
@@ -36,6 +41,14 @@ public class Agencia implements Serializable {
         this.endereco = endereco;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -52,6 +65,6 @@ public class Agencia implements Serializable {
 
     @Override
     public String toString() {
-        return "nome='" + nome +", "+"endereço=" + endereco ;
+        return "id="+id +", "+"nome='" + nome +", "+"endereço=" + endereco ;
     }
 }
