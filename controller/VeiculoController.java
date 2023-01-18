@@ -32,9 +32,9 @@ public class VeiculoController {
         }
     }
 
-    public void buscar(String placa) {
-        if (placa != null) {
-            VeiculoView.listar(veiculoDAO.search(placa));
+    public void buscar(String termo) {
+        if (termo != null) {
+            VeiculoView.listar(veiculoDAO.search(termo));
         } else {
             VeiculoView.buscar();
         }
@@ -42,5 +42,21 @@ public class VeiculoController {
 
     public void listar() {
         VeiculoView.listar(veiculoDAO.getAll());
+    }
+
+    public void exportar() {
+        try {
+            veiculoDAO.exportar();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void importar() {
+        try {
+            veiculoDAO.importar();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
