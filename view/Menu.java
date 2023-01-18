@@ -37,7 +37,7 @@ public class Menu {
 
         pessoaController.carregarListaClientes();
         agenciaController.carregarListaAgencias();
-        veiculoController.carregarVeiculos();
+        // veiculoController.carregarVeiculos();
         // aluguelController.carregarAlugueis();
 
     }
