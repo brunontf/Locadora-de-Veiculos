@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.IOException;
+
 import database.VeiculoDAO;
 import exceptions.DuplicatedRegisterException;
 import model.Veiculo;
@@ -40,23 +42,30 @@ public class VeiculoController {
         }
     }
 
+    public String getNomeECorByPlaca(String placa){
+        // return veiculoDAO.getAll().stream().filter(veiculo->veiculo.getPlaca() == placa).findFirst().orElse(null);
+        for (Veiculo veiculo : veiculoDAO.getAll()) {
+            if (veiculo.getPlaca() == placa){
+                return veiculo.getNome() + " - " + veiculo.getCor();
+            }
+        }
+        return null;
+    }
+
     public void listar() {
         VeiculoView.listar(veiculoDAO.getAll());
     }
 
-    public void exportar() {
-        try {
-            veiculoDAO.exportar();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    public void listarVeiculosDisponiveis() {
+        VeiculoView.listar(veiculoDAO.getVeiculosDisponiveis());
     }
 
-    public void importar() {
-        try {
-            veiculoDAO.importar();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    public void salvarVeiculos() throws IOException {
+        veiculoDAO.salvarVeiculos();
+    }
+
+    public void carregarVeiculos() throws IOException, ClassNotFoundException {
+        veiculoDAO.carregarVeiculos();
+
     }
 }

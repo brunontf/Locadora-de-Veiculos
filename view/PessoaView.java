@@ -24,7 +24,7 @@ public class PessoaView {
     public static void listarClientes(List<Pessoa> listaClientes) {
         int i = 0;
         for (Pessoa cliente : listaClientes) {
-            System.out.println(i + " - " + cliente.getNome());
+            System.out.println(i + " - " + cliente.getNome() + " - " + cliente.getClass().getSimpleName());
             i++;
         }
         System.out.println();

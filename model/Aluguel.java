@@ -1,11 +1,13 @@
 package model;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Aluguel {
+public class Aluguel implements Serializable {
     private String id;
     private String veiculoId;
     private String agenciaId;
+    private String agenciaDevolucaoId;
     private String clienteId;
     private String dataRetirada;
     private String dataDevolucao;
@@ -14,6 +16,14 @@ public class Aluguel {
 
     public Aluguel() {
         this.id = UUID.randomUUID().toString();
+    }
+
+    public Aluguel(String agenciaId, String veiculoId, String clienteId, String agenciaDevolucaoId){
+        this();
+        this.veiculoId = veiculoId;
+        this.agenciaId = agenciaId;
+        this.clienteId = clienteId;
+        this.agenciaDevolucaoId = agenciaDevolucaoId;
     }
 
     public String getId() {

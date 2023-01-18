@@ -11,24 +11,28 @@ import java.util.List;
 public class AgenciaView {
     public static void menu() throws IOException, ClassNotFoundException {
         AgenciaController agenciaController = new AgenciaController();
+        boolean naoRetornarAoMenuPrincipal = true;
 
-        int opcao = ConsoleUIHelper.askChooseOption("Digite a opção desejada",
-                "Adicionar uma nova agência",
-                "Editar agência",
-                "Buscar agência",
-                "Listar agências",
-                "Salvar lista de agências",
-                "Carregar lista de agências",
-                "Retornar ao menu"
-                );
-        switch (opcao){
-            case 0 -> agenciaController.adicionar(null);
-            case 1 -> agenciaController.editar(null);
-            case 2 -> agenciaController.buscar(null, null);
-            case 3 -> agenciaController.listar();
-            case 4 -> agenciaController.salvarListaAgencias();
-            case 5 -> agenciaController.carregarListaAgencias();
-        }
+        do{
+            int opcao = ConsoleUIHelper.askChooseOption("Digite a opção desejada",
+            "Adicionar uma nova agência",
+            "Editar agência",
+            "Buscar agência",
+            "Listar agências",
+            "Salvar lista de agências",
+            "Carregar lista de agências",
+            "Retornar ao menu"
+            );
+            switch (opcao){
+                case 0 -> agenciaController.adicionar(null);
+                case 1 -> agenciaController.editar(null);
+                case 2 -> agenciaController.buscar(null, null);
+                case 3 -> agenciaController.listar();
+                case 4 -> agenciaController.salvarListaAgencias();
+                case 5 -> agenciaController.carregarListaAgencias();
+                case 6 -> naoRetornarAoMenuPrincipal = false;
+            }
+        } while (naoRetornarAoMenuPrincipal);
     }
 
     public static void adicionar(){
@@ -73,7 +77,9 @@ public class AgenciaView {
     public static void listar(List<Agencia> agencias) {
         int i = 0;
         for(Agencia agencia: agencias){
-            System.out.println(i + " - " + agencia.toString());
+            System.out.println(i + " - " + agencia.getNome() + " - " + 
+                agencia.getEndereco().getCidade() + " - " + 
+                agencia.getEndereco().getLogradouro());
             i++;
         }
         System.out.println();

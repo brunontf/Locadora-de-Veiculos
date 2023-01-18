@@ -3,12 +3,25 @@ package database;
 import exceptions.DuplicatedRegisterException;
 import model.Veiculo;
 
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
 import java.io.*;
+
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-public class VeiculoDAO {
+import controller.AluguelController;
+
+public class VeiculoDAO implements Serializable {
     private static VeiculoDAO instance;
     private List<Veiculo> veiculos;
 
@@ -60,17 +73,54 @@ public class VeiculoDAO {
                 .orElse(null);
     }
 
-    public void exportar() throws IOException {
-        FileOutputStream fos = new FileOutputStream("database/lista_de_veiculos.ser");
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(veiculos);
-        oos.close();
+    
+    public List<Veiculo> getVeiculosDisponiveis() {
+        AluguelController aluguelController = new AluguelController();
+        List<String> listaDePlacasAlugadas = new ArrayList<>();
+        List<Veiculo> veiculosDisponiveis = new ArrayList<>();
+        veiculosDisponiveis = veiculos;
+
+        listaDePlacasAlugadas = aluguelController.placasAlugadas(listaDePlacasAlugadas);
+
+        for (Veiculo veiculo : veiculos) {
+            for (String alugado : listaDePlacasAlugadas) {
+                if (veiculo.getPlaca() == alugado){
+                    veiculosDisponiveis.remove(veiculo);
+                }
+            }
+        }
+        
+        return veiculosDisponiveis;
     }
 
-    public void importar() throws IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream("database/lista_de_veiculos.ser");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        this.veiculos = (List<Veiculo>) ois.readObject();
-        ois.close();
+
+    public void setVeiculos(List<Veiculo> veiculos) {
+        this.veiculos = veiculos;
     }
+
+    public void salvarVeiculos() throws IOException {
+        FileOutputStream fos = new FileOutputStream("database\\lista_de_veiculos.ser");
+
+
+    //public void exportar() throws IOException {
+        //FileOutputStream fos = new FileOutputStream("database/lista_de_veiculos.ser");
+
+        //ObjectOutputStream oos = new ObjectOutputStream(fos);
+        //oos.writeObject(veiculos);
+        //oos.close();
+    //}
+
+
+    public void carregarVeiculos() throws IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream("database\\lista_de_veiculos.ser");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        setVeiculos((List<Veiculo>) ois.readObject());
+
+    //public void importar() throws IOException, ClassNotFoundException {
+        //FileInputStream fis = new FileInputStream("database/lista_de_veiculos.ser");
+        //ObjectInputStream ois = new ObjectInputStream(fis);
+        //this.veiculos = (List<Veiculo>) ois.readObject();
+
+        //ois.close();
+    //}
 }

@@ -5,30 +5,37 @@ import database.VeiculoDAO;
 import model.*;
 import util.ConsoleUIHelper;
 
+import java.io.IOException;
 import java.util.List;
 
 public class VeiculoView {
 
-    public static void menu() {
+    public static void menu() throws IOException, ClassNotFoundException {
         VeiculoController veiculoController = new VeiculoController();
 
-        int opcao = ConsoleUIHelper.askChooseOption("Digite a operação desejada",
-                "Adicionar um novo veiculo",
-                "Editar veiculo",
-                "Buscar veiculo",
-                "Listar veiculos",
-                "Salvar em arquivo",
-                "Carregar do arquivo",
-                "Retornar ao menu");
+        boolean naoRetornarAoMenuPrincipal = true;
 
-        switch (opcao) {
-            case 0 -> veiculoController.adicionar(null);
-            case 1 -> veiculoController.editar(null);
-            case 2 -> veiculoController.buscar(null);
-            case 3 -> veiculoController.listar();
-            case 4 -> veiculoController.exportar();
-            case 5 -> veiculoController.importar();
-        }
+        do {
+            int opcao = ConsoleUIHelper.askChooseOption("Digite a operação desejada",
+            "Adicionar um novo veiculo",
+            "Editar veiculo",
+            "Buscar veiculo",
+            "Listar veiculos",
+            "Salvar veiculos",
+            "Carregar veículos",
+            "Retornar ao menu");
+            
+            switch (opcao) {
+                case 0 -> veiculoController.adicionar(null);
+                case 1 -> veiculoController.editar(null);
+                case 2 -> veiculoController.buscar(null);
+                case 3 -> veiculoController.listar();
+                case 4 -> veiculoController.salvarVeiculos();
+                case 5 -> veiculoController.carregarVeiculos();
+                case 6 -> naoRetornarAoMenuPrincipal = false;
+            }
+        } while (naoRetornarAoMenuPrincipal);
+
     }
 
     public static void adicionar() {
@@ -36,10 +43,10 @@ public class VeiculoView {
         VeiculoController veiculoController = new VeiculoController();
 
         int opcao = ConsoleUIHelper.askChooseOption("Digite o tipo de veiculo",
-                "Carro",
-                "Caminhao",
-                "Moto",
-                "Retornar ao menu");
+            "Carro",
+            "Caminhao",
+            "Moto",
+            "Retornar ao menu");
 
         switch (opcao) {
             case 0 -> veiculo = new Carro();
@@ -48,11 +55,16 @@ public class VeiculoView {
             default -> veiculo = new Carro();
         }
 
+        String nome = ConsoleUIHelper.askSimpleInput("Digite o nome do veiculo");
         String placa = ConsoleUIHelper.askSimpleInput("Digite a placa do veiculo");
         String cor = ConsoleUIHelper.askSimpleInput("Digite a cor do veiculo");
+
+        //veiculo.setNome(nome);// DECIDIR UM DOS DOIS
+
         String marca = ConsoleUIHelper.askSimpleInput("Digite a marca do veiculo");
         String modelo = ConsoleUIHelper.askSimpleInput("Digite o modelo do veiculo");
         int ano = ConsoleUIHelper.askInt("Digite o ano do veiculo");
+
         veiculo.setPlaca(placa);
         veiculo.setCor(cor);
         veiculo.setMarca(marca);
@@ -94,7 +106,11 @@ public class VeiculoView {
     public static void listar(List<Veiculo> veiculos) {
         int i = 0;
         for (Veiculo veiculo : veiculos) {
+        
+            //System.out.println(i + " - " + veiculo.getNome() + " - " + veiculo.getPlaca() + " " + veiculo.getCor() + " : " + veiculo.precoDiaria());
+
             exibir(veiculo, i);
+
             i++;
         }
         System.out.println();
