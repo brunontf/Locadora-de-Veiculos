@@ -51,23 +51,24 @@ public class AluguelView {
         int agenciaPosicao = ConsoleUIHelper.askInt("Selecione a agencia");
         veiculoController.listar();
         int veiculoPosicao = ConsoleUIHelper.askInt("Selecione o veiculo");
-        selecionarData();
+        // selecionarData();
         agenciaController.listar();
         int agenciaDevolucaoPosicao = ConsoleUIHelper.askInt("Selecione a agencia de devolucao");
         
         aluguelController.alugar(new Aluguel(
             AgenciaDAO.getInstance().getAll().get(agenciaPosicao).getId(),
-            VeiculoDAO.getInstance().getAll().get(veiculoPosicao).getPlaca(),
-            pessoaController.retornaIdCliente(clientePosicao),
+            VeiculoDAO.getInstance().getAll().get(veiculoPosicao).getPlaca(), // veiculos disponeis alterar
+            pessoaController.retornaIdCliente(clientePosicao),// cpf ou cnpj
             AgenciaDAO.getInstance().getAll().get(agenciaDevolucaoPosicao).getId() 
-        ));
+            ));
     }
-    
+        
     public static void devolver() {
         AluguelController aluguelController = new AluguelController();
         
-        System.out.println("listar alugueis abertos e escolher um pra devolver");
-        
+        aluguelController.listar();
+        int aluguelPosicao = ConsoleUIHelper.askInt("Selecione o aluguel de devolucao");
+
         aluguelController.devolver(new Aluguel());
     }
     

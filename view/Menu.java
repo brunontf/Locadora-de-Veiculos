@@ -21,22 +21,11 @@ public class Menu {
           "Sair");
 
         switch (opcao) {
-            case 0 -> { // chama menu pessoa
-                MenuPessoa.menu();
-            }
-            case 1 -> { // chama menu veiculo
-                VeiculoView.menu();
-            }
-            case 2 -> { // chama menu agencia
-                AgenciaView.menu();
-            }
-            case 3 -> { // chama menu aluguel
-                AluguelView.menu();
-            }
-            case 4 -> { // sair
-                System.exit(0);
-            }
-
+            case 0 -> MenuPessoa.menu();
+            case 1 -> VeiculoView.menu();
+            case 2 -> AgenciaView.menu();
+            case 3 -> AluguelView.menu();
+            case 4 -> System.exit(0);
         }
     }
 
@@ -49,7 +38,7 @@ public class Menu {
         pessoaController.carregarListaClientes();
         agenciaController.carregarListaAgencias();
         veiculoController.carregarVeiculos();
-        aluguelController.carregarAlugueis();
+        // aluguelController.carregarAlugueis();
 
     }
 }

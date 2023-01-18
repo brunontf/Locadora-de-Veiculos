@@ -24,6 +24,7 @@ import view.PessoaView;
 public class PessoaDAO implements Serializable {
     private static PessoaDAO instance;
     private List<Pessoa> listaClientes;
+    private Pessoa cliente;
 
     private PessoaDAO(){
         listaClientes = new ArrayList<>();
@@ -104,8 +105,9 @@ public class PessoaDAO implements Serializable {
         ois.close();
     }
 
-    public String retornaIdCliente(int posicao) {
-        String id = String.valueOf((listaClientes.get(posicao).getClass() == PessoaFisica.class ) ?
+    public String retornaIdCliente(int posicao) { // retorna cpf ou cnpj
+        cliente = listaClientes.get(posicao);
+        String id = String.valueOf((cliente.getClass() == PessoaFisica.class ) ?
             ((PessoaFisica) listaClientes.get(posicao)).getCpf() :
             ((PessoaJuridica) listaClientes.get(posicao)).getCnpj());
         return id;
