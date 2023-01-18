@@ -34,9 +34,9 @@ public class VeiculoController {
         }
     }
 
-    public void buscar(String placa) {
-        if (placa != null) {
-            VeiculoView.listar(veiculoDAO.search(placa));
+    public void buscar(String termo) {
+        if (termo != null) {
+            VeiculoView.listar(veiculoDAO.search(termo));
         } else {
             VeiculoView.buscar();
         }
@@ -66,5 +66,6 @@ public class VeiculoController {
 
     public void carregarVeiculos() throws IOException, ClassNotFoundException {
         veiculoDAO.carregarVeiculos();
+
     }
 }
