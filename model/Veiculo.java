@@ -7,7 +7,6 @@ public abstract class Veiculo implements Serializable {
     private String placa;
     private String cor;
 
-    private String nome; // ESCOLHER UM DOS DOIS
     private String marca;
     private String modelo;
     private int ano;
@@ -26,14 +25,6 @@ public abstract class Veiculo implements Serializable {
 
     public void setCor(String cor) {
         this.cor = cor;
-    }
-    
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome=nome;
     }
 
     public String getMarca() {

@@ -28,7 +28,7 @@ public class VeiculoDAO implements Serializable {
     private VeiculoDAO() {
         veiculos = new ArrayList<>();
         try {
-            // importar();
+            carregarVeiculos();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -93,35 +93,24 @@ public class VeiculoDAO implements Serializable {
         return veiculosDisponiveis;
     }
 
-
     public void setVeiculos(List<Veiculo> veiculos) {
         this.veiculos = veiculos;
     }
 
     public void salvarVeiculos() throws IOException {
-        FileOutputStream fos = new FileOutputStream("database\\lista_de_veiculos.ser");
-
-
-    //public void exportar() throws IOException {
-        //FileOutputStream fos = new FileOutputStream("database/lista_de_veiculos.ser");
-
+        FileOutputStream fos = new FileOutputStream("./database/lista_de_veiculos.ser");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(veiculos);
         oos.close();
     }
 
+    public void carregarVeiculos() {
+        try {
+            FileInputStream fis = new FileInputStream("./database/lista_de_veiculos.ser");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            setVeiculos((List<Veiculo>) ois.readObject());
+        } catch (Exception e) {
 
-    public void carregarVeiculos() throws IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream("database\\lista_de_veiculos.ser");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        setVeiculos((List<Veiculo>) ois.readObject());
+        }
     }
-
-    //public void importar() throws IOException, ClassNotFoundException {
-        //FileInputStream fis = new FileInputStream("database/lista_de_veiculos.ser");
-        //ObjectInputStream ois = new ObjectInputStream(fis);
-        //this.veiculos = (List<Veiculo>) ois.readObject();
-
-        //ois.close();
-    // }
 }
