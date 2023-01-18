@@ -53,8 +53,10 @@ public class VeiculoView {
             default -> veiculo = new Carro();
         }
 
+        String nome = ConsoleUIHelper.askSimpleInput("Digite o nome do veiculo");
         String placa = ConsoleUIHelper.askSimpleInput("Digite a placa do veiculo");
         String cor = ConsoleUIHelper.askSimpleInput("Digite a cor do veiculo");
+        veiculo.setNome(nome);
         veiculo.setPlaca(placa);
         veiculo.setCor(cor);
         veiculoController.adicionar(veiculo);
@@ -87,7 +89,7 @@ public class VeiculoView {
     public static void listar(List<Veiculo> veiculos) {
         int i = 0;
         for (Veiculo veiculo : veiculos) {
-            System.out.println(i + " - " + veiculo.getPlaca() + " " + veiculo.getCor() + " : " + veiculo.precoDiaria());
+            System.out.println(i + " - " + veiculo.getNome() + " - " + veiculo.getPlaca() + " " + veiculo.getCor() + " : " + veiculo.precoDiaria());
             i++;
         }
         System.out.println();

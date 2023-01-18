@@ -39,6 +39,15 @@ public class AgenciaController {
         AgenciaView.listar(agenciaDAO.getAll());
     }
 
+    public String getEndereçoById(String id) {
+        for (Agencia agencia : agenciaDAO.getAll()) {
+            if (agencia.getId() == id){
+                return agencia.getNome() + " - " + agencia.getEndereco().getCidade() + " - " + agencia.getEndereco().getLogradouro();
+            }
+        }
+        return null;
+    }
+
     public void salvarListaAgencias() throws IOException {
         agenciaDAO.salvarListaAgencias();
     }

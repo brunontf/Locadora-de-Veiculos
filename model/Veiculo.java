@@ -6,6 +6,7 @@ import java.util.Objects;
 public abstract class Veiculo implements Serializable {
     private String placa;
     private String cor;
+    private String nome;
 
     public String getPlaca() {
         return placa;
@@ -21,6 +22,14 @@ public abstract class Veiculo implements Serializable {
 
     public void setCor(String cor) {
         this.cor = cor;
+    }
+    
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome=nome;
     }
 
     public abstract float precoDiaria();

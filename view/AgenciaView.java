@@ -77,7 +77,9 @@ public class AgenciaView {
     public static void listar(List<Agencia> agencias) {
         int i = 0;
         for(Agencia agencia: agencias){
-            System.out.println(i + " - " + agencia.toString());
+            System.out.println(i + " - " + agencia.getNome() + " - " + 
+                agencia.getEndereco().getCidade() + " - " + 
+                agencia.getEndereco().getLogradouro());
             i++;
         }
         System.out.println();

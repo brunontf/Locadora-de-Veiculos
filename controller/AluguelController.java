@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import database.AluguelDAO;
 import model.Aluguel;
@@ -29,6 +31,10 @@ public class AluguelController {
         }
     }
 
+    public void devolverPorId(int aluguelPosicao) {
+        aluguelDAO.devolver(aluguelDAO.getAll().get(aluguelPosicao));
+    }
+
     public void salvarAlugueis() throws IOException {
         aluguelDAO.salvarAlugueis();
     }
@@ -39,5 +45,9 @@ public class AluguelController {
 
     public void listar() {
         AluguelView.listar(aluguelDAO.getAll());
+    }
+
+    public List<String> placasAlugadas(List<String> listaDePlacasAlugadas) {
+                return aluguelDAO.getAll().stream().map(aluguel->aluguel.getVeiculoId()).collect(Collectors.toList());
     }
 }

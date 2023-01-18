@@ -1,5 +1,6 @@
 package view;
 
+import java.sql.Date;
 import java.util.List;
 
 import controller.AgenciaController;
@@ -46,10 +47,10 @@ public class AluguelView {
         // System.out.println("Listar os dados de cliente, agencia e cliente e escolher uma opcao");
 
         pessoaController.listarClientes();
-        int clientePosicao = ConsoleUIHelper.askInt("Selecione um cliente");
+        int clientePosicao = ConsoleUIHelper.askInt("Selecione um cliente\n");
         agenciaController.listar();
         int agenciaPosicao = ConsoleUIHelper.askInt("Selecione a agencia");
-        veiculoController.listar();
+        veiculoController.listarVeiculosDisponiveis();
         int veiculoPosicao = ConsoleUIHelper.askInt("Selecione o veiculo");
         // selecionarData();
         agenciaController.listar();
@@ -57,7 +58,7 @@ public class AluguelView {
         
         aluguelController.alugar(new Aluguel(
             AgenciaDAO.getInstance().getAll().get(agenciaPosicao).getId(),
-            VeiculoDAO.getInstance().getAll().get(veiculoPosicao).getPlaca(), // veiculos disponeis alterar
+            VeiculoDAO.getInstance().getVeiculosDisponiveis().get(veiculoPosicao).getPlaca(),
             pessoaController.retornaIdCliente(clientePosicao),// cpf ou cnpj
             AgenciaDAO.getInstance().getAll().get(agenciaDevolucaoPosicao).getId() 
             ));
@@ -65,11 +66,10 @@ public class AluguelView {
         
     public static void devolver() {
         AluguelController aluguelController = new AluguelController();
-        
+            
         aluguelController.listar();
         int aluguelPosicao = ConsoleUIHelper.askInt("Selecione o aluguel de devolucao");
-
-        aluguelController.devolver(new Aluguel());
+        aluguelController.devolverPorId(aluguelPosicao);
     }
     
     public static void selecionarData() {
@@ -78,9 +78,16 @@ public class AluguelView {
     }
 
     public static void listar(List<Aluguel> alugueis) {
+        PessoaController pessoaController = new PessoaController();
+        AgenciaController agenciaController = new AgenciaController();
+        VeiculoController veiculoController = new VeiculoController();
+
         int i = 0;
         for (Aluguel aluguel : alugueis) {
-            System.out.println(i + " - " + aluguel.getVeiculoId() + " - " + aluguel.getAgenciaId() + " - " + aluguel.getClienteId());
+            System.out.println(i + " - " + veiculoController.getNomeECorByPlaca(aluguel.getVeiculoId())
+                + " - " + agenciaController.getEndereçoById(aluguel.getAgenciaId()) 
+                + " - " + pessoaController.getNomeById(aluguel.getClienteId()));
+            System.out.println(pessoaController.getNomeById(aluguel.getClienteId()));
             i++;
         }
         System.out.println();

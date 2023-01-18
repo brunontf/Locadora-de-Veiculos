@@ -9,7 +9,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class AluguelDAO implements Serializable {
@@ -40,9 +42,7 @@ public class AluguelDAO implements Serializable {
     }
 
     public void devolver(Aluguel aluguel) {
-        this.alugueis.stream()
-                .map(a -> a.equals(aluguel) ? aluguel : null)
-                .collect(Collectors.toList());
+        alugueis =  this.alugueis.stream().filter(a -> a != aluguel).collect(Collectors.toList());
     }
 
     public void salvarAlugueis() throws IOException {

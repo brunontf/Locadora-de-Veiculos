@@ -10,8 +10,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
+import controller.AluguelController;
 
 public class VeiculoDAO implements Serializable {
     private static VeiculoDAO instance;
@@ -55,6 +59,25 @@ public class VeiculoDAO implements Serializable {
                 .orElse(null);
     }
     
+    public List<Veiculo> getVeiculosDisponiveis() {
+        AluguelController aluguelController = new AluguelController();
+        List<String> listaDePlacasAlugadas = new ArrayList<>();
+        List<Veiculo> veiculosDisponiveis = new ArrayList<>();
+        veiculosDisponiveis = veiculos;
+
+        listaDePlacasAlugadas = aluguelController.placasAlugadas(listaDePlacasAlugadas);
+
+        for (Veiculo veiculo : veiculos) {
+            for (String alugado : listaDePlacasAlugadas) {
+                if (veiculo.getPlaca() == alugado){
+                    veiculosDisponiveis.remove(veiculo);
+                }
+            }
+        }
+        
+        return veiculosDisponiveis;
+    }
+
 
     public void setVeiculos(List<Veiculo> veiculos) {
         this.veiculos = veiculos;
