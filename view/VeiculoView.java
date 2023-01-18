@@ -17,6 +17,8 @@ public class VeiculoView {
                 "Editar veiculo",
                 "Buscar veiculo",
                 "Listar veiculos",
+                "Salvar em arquivo",
+                "Carregar do arquivo",
                 "Retornar ao menu");
 
         switch (opcao) {
@@ -24,6 +26,8 @@ public class VeiculoView {
             case 1 -> veiculoController.editar(null);
             case 2 -> veiculoController.buscar(null);
             case 3 -> veiculoController.listar();
+            case 4 -> veiculoController.exportar();
+            case 5 -> veiculoController.importar();
         }
     }
 
@@ -46,8 +50,14 @@ public class VeiculoView {
 
         String placa = ConsoleUIHelper.askSimpleInput("Digite a placa do veiculo");
         String cor = ConsoleUIHelper.askSimpleInput("Digite a cor do veiculo");
+        String marca = ConsoleUIHelper.askSimpleInput("Digite a marca do veiculo");
+        String modelo = ConsoleUIHelper.askSimpleInput("Digite o modelo do veiculo");
+        int ano = ConsoleUIHelper.askInt("Digite o ano do veiculo");
         veiculo.setPlaca(placa);
         veiculo.setCor(cor);
+        veiculo.setMarca(marca);
+        veiculo.setModelo(modelo);
+        veiculo.setAno(ano);
         veiculoController.adicionar(veiculo);
     }
 
@@ -60,10 +70,16 @@ public class VeiculoView {
         veiculo = veiculoDAO.getByPlaca(placa);
 
         if (veiculo == null) return;
-        exibir(veiculo);
+        exibir(veiculo, null);
 
         String cor = ConsoleUIHelper.askSimpleInput("Digite a nova cor do veiculo");
+        String marca = ConsoleUIHelper.askSimpleInput("Digite a marca do veiculo");
+        String modelo = ConsoleUIHelper.askSimpleInput("Digite o modelo do veiculo");
+        int ano = ConsoleUIHelper.askInt("Digite o ano do veiculo");
         veiculo.setCor(cor);
+        veiculo.setMarca(marca);
+        veiculo.setModelo(modelo);
+        veiculo.setAno(ano);
 
         veiculoController.editar(veiculo);
     }
@@ -71,20 +87,23 @@ public class VeiculoView {
     public static void buscar() {
         VeiculoController veiculoController = new VeiculoController();
 
-        String placa = ConsoleUIHelper.askSimpleInput("Digite a placa do veiculo");
-        veiculoController.buscar(placa);
+        String termo = ConsoleUIHelper.askSimpleInput("Digite o termo da busca");
+        veiculoController.buscar(termo);
     }
 
     public static void listar(List<Veiculo> veiculos) {
         int i = 0;
         for (Veiculo veiculo : veiculos) {
-            System.out.println(i + " - " + veiculo.getPlaca() + " " + veiculo.getCor() + " : " + veiculo.precoDiaria());
+            exibir(veiculo, i);
             i++;
         }
         System.out.println();
     }
 
-    public static void exibir(Veiculo veiculo) {
-        System.out.println(veiculo.getPlaca() + " " + veiculo.getCor() + " : " + veiculo.precoDiaria());
+    public static void exibir(Veiculo veiculo, Integer index) {
+        if(index != null) {
+            System.out.print(index + ": ");
+        }
+        System.out.println("[" + veiculo.getPlaca() + "] " + veiculo.getMarca() + " " + veiculo.getModelo() + " " + veiculo.getCor() + " Diaria: " + veiculo.precoDiaria());
     }
 }
