@@ -55,12 +55,8 @@ public class VeiculoView {
             default -> veiculo = new Carro();
         }
 
-        String nome = ConsoleUIHelper.askSimpleInput("Digite o nome do veiculo");
         String placa = ConsoleUIHelper.askSimpleInput("Digite a placa do veiculo");
         String cor = ConsoleUIHelper.askSimpleInput("Digite a cor do veiculo");
-
-        //veiculo.setNome(nome);// DECIDIR UM DOS DOIS
-
         String marca = ConsoleUIHelper.askSimpleInput("Digite a marca do veiculo");
         String modelo = ConsoleUIHelper.askSimpleInput("Digite o modelo do veiculo");
         int ano = ConsoleUIHelper.askInt("Digite o ano do veiculo");
@@ -106,12 +102,7 @@ public class VeiculoView {
     public static void listar(List<Veiculo> veiculos) {
         int i = 0;
         for (Veiculo veiculo : veiculos) {
-        
-            //System.out.println(i + " - " + veiculo.getNome() + " - " + veiculo.getPlaca() + " " + veiculo.getCor() + " : " + veiculo.precoDiaria());
-
-            exibir(veiculo, i);
-
-            i++;
+            exibir(veiculo, i++);
         }
         System.out.println();
     }

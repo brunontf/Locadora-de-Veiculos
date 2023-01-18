@@ -20,6 +20,7 @@ public class AluguelDAO implements Serializable {
 
     private AluguelDAO() {
         alugueis = new ArrayList<>();
+        carregarAlugueis();
     }
 
     public static AluguelDAO getInstance() {
@@ -52,11 +53,15 @@ public class AluguelDAO implements Serializable {
         oos.close();
     }
 
-    public void carregarAlugueis() throws IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream("database\\lista_de_alugueis.ser");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        setAlugueis((List<Aluguel>) ois.readObject());
-        ois.close();
+    public void carregarAlugueis() {
+        try {
+            FileInputStream fis = new FileInputStream("database\\lista_de_alugueis.ser");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            setAlugueis((List<Aluguel>) ois.readObject());
+            ois.close();
+        } catch (Exception e) {
+
+        }
     }
 
 }

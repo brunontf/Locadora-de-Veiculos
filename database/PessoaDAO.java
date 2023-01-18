@@ -1,6 +1,5 @@
 package database;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,11 +8,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 import model.Pessoa;
 import model.PessoaFisica;
@@ -28,6 +22,7 @@ public class PessoaDAO implements Serializable {
 
     private PessoaDAO(){
         listaClientes = new ArrayList<>();
+        carregarListaClientes();
     }
 
     public static PessoaDAO getInstance() {
@@ -92,17 +87,21 @@ public class PessoaDAO implements Serializable {
     }
 
     public void salvarListaClientes() throws IOException {
-        FileOutputStream fos = new FileOutputStream("database\\lista_de_clientes.ser");
+        FileOutputStream fos = new FileOutputStream("./database/lista_de_clientes.ser");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(listaClientes);
         oos.close();
     }
 
-    public void carregarListaClientes() throws IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream("database\\lista_de_clientes.ser");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        setListaClientes((List<Pessoa>) ois.readObject()); 
-        ois.close();
+    public void carregarListaClientes() {
+        try {
+            FileInputStream fis = new FileInputStream("./database/lista_de_clientes.ser");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            setListaClientes((List<Pessoa>) ois.readObject());
+            ois.close();
+        } catch (Exception e) {
+
+        }
     }
 
     public String retornaIdCliente(int posicao) { // retorna cpf ou cnpj
@@ -112,23 +111,4 @@ public class PessoaDAO implements Serializable {
             ((PessoaJuridica) listaClientes.get(posicao)).getCnpj());
         return id;
     }
-
-    //public void salvarListaClientesJSON() throws IOException {
-        // ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
-        // Java object to JSON file
-        // mapper.writeValue(new File("database\\lista_de_clientes.json"), listaClientes);
-    //}
-
-    //public void carregarListaClientesJSON() throws StreamReadException, DatabindException, IOException {
-        // ObjectMapper mapper = new ObjectMapper();
-
-        // //JSON file to Java object
-        // List<Pessoa> listaPessoas = mapper.readValue(new File("database\\lista_de_clientes.json"), 
-        // mapper.getTypeFactory().constructCollectionType(List.class, Pessoa.class));
-        // System.out.println(listaPessoas);
-        // setListaClientes(listaPessoas);
-
-        // // //JSON string to Java Object
-        // Staff obj = mapper.readValue("{'name' : 'mkyong'}", Staff.class);
-    //}
 }

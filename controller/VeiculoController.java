@@ -43,10 +43,9 @@ public class VeiculoController {
     }
 
     public String getNomeECorByPlaca(String placa){
-        // return veiculoDAO.getAll().stream().filter(veiculo->veiculo.getPlaca() == placa).findFirst().orElse(null);
         for (Veiculo veiculo : veiculoDAO.getAll()) {
             if (veiculo.getPlaca() == placa){
-                return veiculo.getNome() + " - " + veiculo.getCor();
+                return veiculo.getModelo() + " " + veiculo.getModelo()  + " - " + veiculo.getCor();
             }
         }
         return null;

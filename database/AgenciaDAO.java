@@ -13,6 +13,7 @@ public class AgenciaDAO implements Serializable {
 
     private AgenciaDAO(){
         agencias = new ArrayList<>();
+        carregarListaAgencias();
     }
 
     public static AgenciaDAO getInstance(){
@@ -61,11 +62,15 @@ public class AgenciaDAO implements Serializable {
         oos.close();
     }
 
-    public void carregarListaAgencias() throws  IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream("./database/lista_de_agencias.ser");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        setListaAgencias((List<Agencia>) ois.readObject());
-        ois.close();
+    public void carregarListaAgencias() {
+        try {
+            FileInputStream fis = new FileInputStream("./database/lista_de_agencias.ser");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            setListaAgencias((List<Agencia>) ois.readObject());
+            ois.close();
+        } catch (Exception e) {
+
+        }
     }
 
     public List<Agencia> getListaAgencias() {
