@@ -47,7 +47,7 @@ public class AluguelController {
         AluguelView.listar(aluguelDAO.getAll());
     }
 
-    public List<String> placasAlugadas(List<String> listaDePlacasAlugadas) {
-                return aluguelDAO.getAll().stream().map(aluguel->aluguel.getVeiculoId()).collect(Collectors.toList());
+    public List<String> placasAlugadas() {
+        return aluguelDAO.getAll().stream().map(aluguel->aluguel.getVeiculoId()).collect(Collectors.toList());
     }
 }

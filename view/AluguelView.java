@@ -44,7 +44,6 @@ public class AluguelView {
         VeiculoController  veiculoController = new VeiculoController();
 
 
-        // System.out.println("Listar os dados de cliente, agencia e cliente e escolher uma opcao");
 
         pessoaController.listarClientes();
         int clientePosicao = ConsoleUIHelper.askInt("Selecione um cliente\n");
@@ -84,11 +83,11 @@ public class AluguelView {
 
         int i = 0;
         for (Aluguel aluguel : alugueis) {
-            System.out.println(i + " - " + veiculoController.getNomeECorByPlaca(aluguel.getVeiculoId())
-                + " - " + agenciaController.getEndereçoById(aluguel.getAgenciaId()) 
+            System.out.println(i + " - "
+                + " - " + AgenciaDAO.getInstance().getAgenciaById(aluguel.getAgenciaId()).getEndereco()
                 + " - " + pessoaController.getNomeById(aluguel.getClienteId()));
-            System.out.println(pessoaController.getNomeById(aluguel.getClienteId()));
             i++;
+            VeiculoView.exibir(VeiculoDAO.getInstance().getByPlaca(aluguel.getVeiculoId()), null);
         }
         System.out.println();
     }

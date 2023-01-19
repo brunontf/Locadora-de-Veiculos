@@ -78,17 +78,20 @@ public class VeiculoDAO implements Serializable {
         AluguelController aluguelController = new AluguelController();
         List<String> listaDePlacasAlugadas = new ArrayList<>();
         List<Veiculo> veiculosDisponiveis = new ArrayList<>();
-        veiculosDisponiveis = veiculos;
+        veiculosDisponiveis.addAll(veiculos);
 
-        listaDePlacasAlugadas = aluguelController.placasAlugadas(listaDePlacasAlugadas);
+        listaDePlacasAlugadas = aluguelController.placasAlugadas();
 
+        for (String alugado : listaDePlacasAlugadas) {
         for (Veiculo veiculo : veiculos) {
-            for (String alugado : listaDePlacasAlugadas) {
                 if (veiculo.getPlaca() == alugado){
                     veiculosDisponiveis.remove(veiculo);
                 }
             }
+
         }
+        // veiculosDisponiveis = veiculos.stream().filter(veiculo->! listaDePlacasAlugadas.
+        //     contains(veiculo.getPlaca())).collect(Collectors.toList());
         
         return veiculosDisponiveis;
     }
