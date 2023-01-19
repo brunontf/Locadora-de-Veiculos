@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import database.AluguelDAO;
 import model.Aluguel;
-import model.Veiculo;
 import view.AluguelView;
 
 public class AluguelController {
@@ -50,9 +49,5 @@ public class AluguelController {
 
     public List<String> placasAlugadas() {
         return aluguelDAO.getAll().stream().map(aluguel->aluguel.getVeiculoId()).collect(Collectors.toList());
-    }
-    public void diariaVeiculo(int index) {
-        return aluguelDAO.getAll().get(index).getVeiculoId();
-
     }
 }
