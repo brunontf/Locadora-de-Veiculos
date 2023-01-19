@@ -127,7 +127,4 @@ public class PessoaDAO implements Serializable {
         return id;
     }
 
-    public Pessoa getPessoaById(String id){
-        return new PessoaFisica("João", "79", 9999);
-    }
 }

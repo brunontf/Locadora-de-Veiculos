@@ -63,8 +63,16 @@ public class AluguelDAO implements Serializable {
 
         }
     }
-    public int getIndexById(String id){
-        return alugueis.stream().filter(obj -> obj.getId()==id).collect(Collectors.toList()).get(0);
+    public Integer getIndexById(String id){
+        int i =0;
+        for (Aluguel aluguel : alugueis) {
+            if(aluguel.getId() == id){
+                return i;
+            }
+            i++;
+        }
+        return null;
+
     }
 
     public String valorTotalDiarias(int index){
