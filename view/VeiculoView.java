@@ -111,6 +111,6 @@ public class VeiculoView {
         if(index != null) {
             System.out.print(index + ": ");
         }
-        System.out.println("[" + veiculo.getPlaca() + "] " + veiculo.getMarca() + " " + veiculo.getModelo() + " " + veiculo.getCor() + " Diaria: " + veiculo.precoDiaria());
+        System.out.println("[" + veiculo.getPlaca() + "] " + veiculo.getMarca() + " " + veiculo.getModelo() + " " + veiculo.getCor());
     }
 }
