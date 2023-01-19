@@ -5,7 +5,6 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class Agencia implements Serializable {
-    //private List<Veiculo> veiculos;
     private String nome;
     private String id;
     private Endereco endereco;
@@ -65,6 +64,6 @@ public class Agencia implements Serializable {
 
     @Override
     public String toString() {
-        return "id="+id +", "+"nome='" + nome +", "+"endereço=" + endereco ;
+        return "nome='" + nome +", "+"endereço=" + endereco ;
     }
 }

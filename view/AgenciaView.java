@@ -3,6 +3,7 @@ package view;
 import controller.AgenciaController;
 import model.Agencia;
 import model.Endereco;
+import model.Veiculo;
 import util.ConsoleUIHelper;
 
 import java.io.IOException;
@@ -85,7 +86,10 @@ public class AgenciaView {
         System.out.println();
     }
 
-
-
-
+    public static void exibir(Agencia agencia, Integer index) {
+        if(index != null) {
+            System.out.print(index + ": ");
+        }
+        System.out.printf("[" + agencia.toString() + "] ");
+    }
 }
