@@ -50,4 +50,8 @@ public class AluguelController {
     public List<String> placasAlugadas() {
         return aluguelDAO.getAll().stream().map(aluguel->aluguel.getVeiculoId()).collect(Collectors.toList());
     }
+
+    public String valorTotalDiarias(int index) {
+        return aluguelDAO.valorTotalDiarias(index);
+    }
 }

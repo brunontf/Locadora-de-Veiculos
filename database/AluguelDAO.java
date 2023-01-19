@@ -1,6 +1,6 @@
 package database;
 
-import model.Aluguel;
+import model.*;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -62,6 +62,24 @@ public class AluguelDAO implements Serializable {
         } catch (Exception e) {
 
         }
+    }
+    public int getIndexById(String id){
+        return alugueis.stream().filter(obj -> obj.getId()==id).collect(Collectors.toList()).get(0);
+    }
+
+    public String valorTotalDiarias(int index){
+        Pessoa pessoa = PessoaDAO.getInstance().getPessoaById(alugueis.get(index).getClienteId());
+        Veiculo veiculo = VeiculoDAO.getInstance().getByPlaca(alugueis.get(index).getVeiculoId());
+
+        double valorTotal = alugueis.get(index).getDiarias() * veiculo.precoDiaria();
+
+        if(pessoa.getClass()== PessoaFisica.class && alugueis.get(index).getDiarias()>5){
+            valorTotal = valorTotal * 0.95;
+        } else if (pessoa.getClass()== PessoaJuridica.class && alugueis.get(index).getDiarias()>3) {
+            valorTotal = valorTotal * 0.9;
+        }
+
+        return String.format("%.2f", valorTotal);
     }
 
 }
