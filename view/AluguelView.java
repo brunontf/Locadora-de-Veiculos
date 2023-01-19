@@ -28,7 +28,10 @@ public class AluguelView {
                     "Retornar ao menu");
             switch (opcao) {
                 case 0 -> aluguelController.alugar(null);
-                case 1 -> aluguelController.devolver(null);
+                case 1 -> {
+
+                    aluguelController.devolver(null);
+                }
                 case 2 -> aluguelController.listar();
                 case 3 -> naoRetornarAoMenuPrincipal = false;
             }
@@ -65,10 +68,12 @@ public class AluguelView {
         
     public static void devolver() {
         AluguelController aluguelController = new AluguelController();
-            
+
         aluguelController.listar();
         int aluguelPosicao = ConsoleUIHelper.askInt("Selecione o aluguel de devolucao");
         aluguelController.devolverPorId(aluguelPosicao);
+
+        ComprovanteView.menuDevolucao(aluguelController);
     }
     
     public static void selecionarData() {
@@ -83,10 +88,11 @@ public class AluguelView {
 
         int i = 0;
         for (Aluguel aluguel : alugueis) {
-            System.out.println(i + " - "
-                + " - " + AgenciaDAO.getInstance().getAgenciaById(aluguel.getAgenciaId()).getEndereco()
-                + " - " + pessoaController.getNomeById(aluguel.getClienteId()));
+            System.out.println(i + " - " + pessoaController.getNomeById(aluguel.getClienteId()));
             i++;
+            System.out.print(" - ");
+            AgenciaView.exibir(AgenciaDAO.getInstance().getAgenciaById(aluguel.getAgenciaId()), null);
+            System.out.print(" - ");
             VeiculoView.exibir(VeiculoDAO.getInstance().getByPlaca(aluguel.getVeiculoId()), null);
         }
         System.out.println();
