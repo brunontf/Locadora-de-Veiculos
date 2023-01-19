@@ -88,8 +88,8 @@ public class VeiculoDAO implements Serializable {
                     veiculosDisponiveis.remove(veiculo);
                 }
             }
-
         }
+
         // veiculosDisponiveis = veiculos.stream().filter(veiculo->! listaDePlacasAlugadas.
         //     contains(veiculo.getPlaca())).collect(Collectors.toList());
         

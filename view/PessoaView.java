@@ -32,11 +32,11 @@ public class PessoaView {
 
     public static void addPessoa() {
         PessoaController pessoaController = new PessoaController();
-        int pessoaFisica = ConsoleUIHelper.askChooseOption("Escolha o tipo de pessoa", "Pessoa física", "Pessoa jurídica");
+        int tipoPessoa = ConsoleUIHelper.askChooseOption("Escolha o tipo de pessoa", "Pessoa física", "Pessoa jurídica");
         String nome = ConsoleUIHelper.askNoEmptyInput("Digite o nome do contato:", 3);
         String telefone = ConsoleUIHelper.askNoEmptyInput("Digite o telefone do contato:", 3);
         
-        if (pessoaFisica == 0){
+        if (tipoPessoa == 0){
             Integer cpf = ConsoleUIHelper.askInt("Digite o CPF do cliente");
             Pessoa pessoa = new PessoaFisica(nome, telefone, cpf);
             if (pessoaController.ePessoaDuplicada(pessoa)){
@@ -55,6 +55,10 @@ public class PessoaView {
         }
     }
 
+    public static void exibirDadosPessoa(Pessoa pessoa) {
+        System.out.print(pessoa.getNome() + " - " + pessoa.getClass().getSimpleName());
+    }
+
     public static int askId() {
         return ConsoleUIHelper.askInt("Digite o ID da pessoa");
     }
@@ -62,5 +66,6 @@ public class PessoaView {
     public static void listaVazia() {
         ConsoleUIHelper.drawWithPadding("A lista de pessoas está vazia", 80);
     }
+
     
 }

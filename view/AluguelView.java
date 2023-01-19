@@ -81,17 +81,13 @@ public class AluguelView {
     }
 
     public static void listar(List<Aluguel> alugueis) {
-        PessoaController pessoaController = new PessoaController();
-        AgenciaController agenciaController = new AgenciaController();
-        VeiculoController veiculoController = new VeiculoController();
-
         int i = 0;
         for (Aluguel aluguel : alugueis) {
             System.out.println(i + " - "
-                + " - " + AgenciaDAO.getInstance().getAgenciaById(aluguel.getAgenciaId()).getEndereco()
-                + " - " + pessoaController.getNomeById(aluguel.getClienteId()));
-            i++;
-            VeiculoView.exibir(VeiculoDAO.getInstance().getByPlaca(aluguel.getVeiculoId()), null);
+                + " - " + AgenciaDAO.getInstance().getAgenciaById(aluguel.getAgenciaId()).getEndereco());
+                PessoaView.exibirDadosPessoa(PessoaDAO.getInstance().getPessoaById(aluguel.getClienteId()));
+                VeiculoView.exibir(VeiculoDAO.getInstance().getByPlaca(aluguel.getVeiculoId()), null);
+                i++;
         }
         System.out.println();
     }

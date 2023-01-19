@@ -82,6 +82,21 @@ public class PessoaDAO implements Serializable {
         }
     }
 
+    public Pessoa getPessoaById(String id){
+        for (Pessoa pessoa : listaClientes){
+            if (pessoa.getClass() == PessoaFisica.class){
+                if (((PessoaFisica) pessoa).getCpf() == Integer.parseInt(id)){
+                    return pessoa;
+                }
+            } else{
+                if (((PessoaJuridica) pessoa).getCnpj() == Integer.parseInt(id)){
+                    return pessoa;
+                }
+            }
+        }
+        return null;
+    }
+
     public void listarClientes() {
         PessoaView.listarClientes(listaClientes);
     }
