@@ -11,13 +11,23 @@ public class Aluguel implements Serializable {
     private String clienteId;
     private String dataRetirada;
     private String horaRetirada;
+
+    public int getDiarias() {
+        return diarias;
+    }
+
+    public void setDiarias(int diarias) {
+        this.diarias = diarias;
+    }
+
     private int diarias;
 
     public Aluguel() {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Aluguel(String agenciaId, String veiculoId, String clienteId, String agenciaDevolucaoId, String dataRetirada, String horaRetirada){
+    public Aluguel(String agenciaId, String veiculoId, String clienteId, String agenciaDevolucaoId, String dataRetirada,
+                   String horaRetirada, int diarias){
         this();
         this.veiculoId = veiculoId;
         this.agenciaId = agenciaId;
@@ -25,6 +35,7 @@ public class Aluguel implements Serializable {
         this.agenciaDevolucaoId = agenciaDevolucaoId;
         this.dataRetirada = dataRetirada;
         this.horaRetirada = horaRetirada;
+        this.diarias = diarias;
     }
 
     public String getId() {
