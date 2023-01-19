@@ -51,7 +51,8 @@ public class AluguelView {
         int agenciaPosicao = ConsoleUIHelper.askInt("Selecione a agencia");
         veiculoController.listarVeiculosDisponiveis();
         int veiculoPosicao = ConsoleUIHelper.askInt("Selecione o veiculo");
-        // selecionarData();
+        String dataRetirada = ConsoleUIHelper.askSimpleInput("Selecione a data de retirada");
+        String horaRetirada = ConsoleUIHelper.askSimpleInput("Selecione a hora de retirada");
         agenciaController.listar();
         int agenciaDevolucaoPosicao = ConsoleUIHelper.askInt("Selecione a agencia de devolucao");
         
@@ -59,7 +60,8 @@ public class AluguelView {
             AgenciaDAO.getInstance().getAll().get(agenciaPosicao).getId(),
             VeiculoDAO.getInstance().getVeiculosDisponiveis().get(veiculoPosicao).getPlaca(),
             pessoaController.retornaIdCliente(clientePosicao),// cpf ou cnpj
-            AgenciaDAO.getInstance().getAll().get(agenciaDevolucaoPosicao).getId() 
+            AgenciaDAO.getInstance().getAll().get(agenciaDevolucaoPosicao).getId(),
+            dataRetirada, horaRetirada
             ));
     }
         
@@ -69,11 +71,6 @@ public class AluguelView {
         aluguelController.listar();
         int aluguelPosicao = ConsoleUIHelper.askInt("Selecione o aluguel de devolucao");
         aluguelController.devolverPorId(aluguelPosicao);
-    }
-    
-    public static void selecionarData() {
-        System.out.println("Selecione a data");
-        System.out.println("Selecione o horario");
     }
 
     public static void listar(List<Aluguel> alugueis) {
