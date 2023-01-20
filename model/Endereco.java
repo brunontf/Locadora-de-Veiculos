@@ -85,6 +85,6 @@ public class Endereco implements Serializable {
 
     @Override
     public String toString() {
-        return ("cidade=" + cidade + ", estado=" + estado);
+        return ("Cidade=" + cidade + ", Estado=" + estado);
     }
 }
