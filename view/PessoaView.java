@@ -3,6 +3,7 @@ package view;
 import java.util.List;
 
 import controller.PessoaController;
+import database.PessoaDAO;
 import model.Pessoa;
 import model.PessoaFisica;
 import model.PessoaJuridica;
@@ -65,6 +66,13 @@ public class PessoaView {
 
     public static void listaVazia() {
         ConsoleUIHelper.drawWithPadding("A lista de pessoas está vazia", 80);
+    }
+
+    public static void removerPessoa() {
+        listarClientes(PessoaDAO.getInstance().getListaClientes());
+        int pessoaPosicao = ConsoleUIHelper.askInt("Escolha a pessoa a ser removida");
+        PessoaController pessoaController = new PessoaController();
+        pessoaController.removerPessoa(PessoaDAO.getInstance().getListaClientes().get(pessoaPosicao));
     }
 
     
