@@ -8,6 +8,7 @@ import controller.AluguelController;
 import controller.PessoaController;
 import controller.VeiculoController;
 import database.AgenciaDAO;
+import database.AluguelDAO;
 import database.PessoaDAO;
 import database.VeiculoDAO;
 import model.Aluguel;
@@ -77,7 +78,12 @@ public class AluguelView {
             
         aluguelController.listar();
         int aluguelPosicao = ConsoleUIHelper.askInt("Selecione o aluguel de devolucao");
+
+        ComprovanteView.menuDevolucao(AluguelDAO.getInstance().getAll().get(aluguelPosicao));
+
         aluguelController.devolverPorId(aluguelPosicao);
+
+
     }
 
     public static void listar(List<Aluguel> alugueis) {
