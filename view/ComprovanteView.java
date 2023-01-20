@@ -47,7 +47,7 @@ public class ComprovanteView {
 //        AgenciaView.exibir();
         System.out.println("DATA DE RETIRADA");
 
-        System.out.printf("VALOR TOTAL DO ALUGUEL: R$ %s\n", aluguelController.valorTotalDiarias()        );
+        // System.out.printf("VALOR TOTAL DO ALUGUEL: R$ %s\n", aluguelController.valorTotalDiarias());
 
 
         /*
