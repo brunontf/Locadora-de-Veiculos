@@ -1,6 +1,7 @@
 package database;
 
 import exceptions.DuplicatedRegisterException;
+import model.Aluguel;
 import model.Veiculo;
 
 
@@ -74,7 +75,7 @@ public class VeiculoDAO implements Serializable {
     }
 
     
-    public List<Veiculo> getVeiculosDisponiveis() {
+    public List<Veiculo> getVeiculosDisponiveis(String agencia) {
         AluguelController aluguelController = new AluguelController();
         List<String> listaDePlacasAlugadas = new ArrayList<>();
         List<Veiculo> veiculosDisponiveis = new ArrayList<>();
@@ -89,11 +90,13 @@ public class VeiculoDAO implements Serializable {
                 }
             }
         }
-
-        // veiculosDisponiveis = veiculos.stream().filter(veiculo->! listaDePlacasAlugadas.
-        //     contains(veiculo.getPlaca())).collect(Collectors.toList());
-        
-        return veiculosDisponiveis;
+        List<Veiculo> veiculosDisponiveisPorAgencia = new ArrayList<>();
+        for (Veiculo veiculo : veiculosDisponiveis) {
+            if(veiculo.getAgencia().equals(agencia)){
+                veiculosDisponiveisPorAgencia.add(veiculo);
+            }
+        }
+        return veiculosDisponiveisPorAgencia;
     }
 
     public void setVeiculos(List<Veiculo> veiculos) {
@@ -115,5 +118,10 @@ public class VeiculoDAO implements Serializable {
         } catch (Exception e) {
 
         }
+    }
+
+    public void devolverAgenciaVeiculo(Aluguel aluguel) {
+        Veiculo veiculo = getByPlaca(aluguel.getVeiculoId());
+        veiculo.setAgencia(aluguel.getAgenciaDevolucaoId());
     }
 }

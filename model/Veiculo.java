@@ -6,6 +6,7 @@ import java.util.Objects;
 public abstract class Veiculo implements Serializable {
     private String placa;
     private String cor;
+    private String agencia;
 
     private String marca;
     private String modelo;
@@ -50,6 +51,15 @@ public abstract class Veiculo implements Serializable {
     public void setAno(int ano) {
         this.ano = ano;
     }
+    
+    public String getAgencia() {
+        return agencia;
+    }
+
+    public void setAgencia(String agencia) {
+        this.agencia = agencia;
+    }
+    
 
     public abstract float precoDiaria();
 
@@ -60,4 +70,5 @@ public abstract class Veiculo implements Serializable {
         Veiculo veiculo = (Veiculo) o;
         return Objects.equals(placa.toLowerCase(), veiculo.placa.toLowerCase());
     }
+
 }

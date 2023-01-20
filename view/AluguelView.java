@@ -8,6 +8,7 @@ import controller.AluguelController;
 import controller.PessoaController;
 import controller.VeiculoController;
 import database.AgenciaDAO;
+import database.AluguelDAO;
 import database.PessoaDAO;
 import database.VeiculoDAO;
 import model.Aluguel;
@@ -49,7 +50,7 @@ public class AluguelView {
         int clientePosicao = ConsoleUIHelper.askInt("Selecione um cliente\n");
         agenciaController.listar();
         int agenciaPosicao = ConsoleUIHelper.askInt("Selecione a agencia");
-        veiculoController.listarVeiculosDisponiveis();
+        veiculoController.listarVeiculosDisponiveis(AgenciaDAO.getInstance().getIdByPosition(agenciaPosicao));
         int veiculoPosicao = ConsoleUIHelper.askInt("Selecione o veiculo");
         String dataRetirada = ConsoleUIHelper.askSimpleInput("Selecione a data de retirada");
         String horaRetirada = ConsoleUIHelper.askSimpleInput("Selecione a hora de retirada");
@@ -59,7 +60,7 @@ public class AluguelView {
 
         Aluguel aluguel = new Aluguel(
                 AgenciaDAO.getInstance().getAll().get(agenciaPosicao).getId(),
-                VeiculoDAO.getInstance().getVeiculosDisponiveis().get(veiculoPosicao).getPlaca(),
+                VeiculoDAO.getInstance().getVeiculosDisponiveis(AgenciaDAO.getInstance().getIdByPosition(agenciaPosicao)).get(veiculoPosicao).getPlaca(),
                 pessoaController.retornaIdCliente(clientePosicao),// cpf ou cnpj
                 AgenciaDAO.getInstance().getAll().get(agenciaDevolucaoPosicao).getId(),
                 dataRetirada, horaRetirada, diarias
@@ -77,6 +78,7 @@ public class AluguelView {
             
         aluguelController.listar();
         int aluguelPosicao = ConsoleUIHelper.askInt("Selecione o aluguel de devolucao");
+        VeiculoDAO.getInstance().devolverAgenciaVeiculo(AluguelDAO.getInstance().getAll().get(aluguelPosicao));
         aluguelController.devolverPorId(aluguelPosicao);
     }
 

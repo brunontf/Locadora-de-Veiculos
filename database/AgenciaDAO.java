@@ -79,4 +79,8 @@ public class AgenciaDAO implements Serializable {
     public void setListaAgencias(List<Agencia> agencias) {
         this.agencias = agencias;
     }
+
+    public String getIdByPosition(int agencia) {
+        return agencias.get(agencia).getId();
+    }
 }
