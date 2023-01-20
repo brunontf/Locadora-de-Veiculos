@@ -1,6 +1,7 @@
 package view;
 
 import controller.VeiculoController;
+import database.AgenciaDAO;
 import database.VeiculoDAO;
 import model.*;
 import util.ConsoleUIHelper;
@@ -60,6 +61,10 @@ public class VeiculoView {
         String marca = ConsoleUIHelper.askSimpleInput("Digite a marca do veiculo");
         String modelo = ConsoleUIHelper.askSimpleInput("Digite o modelo do veiculo");
         int ano = ConsoleUIHelper.askInt("Digite o ano do veiculo");
+
+        AgenciaView.listar(AgenciaDAO.getInstance().getListaAgencias());
+        int agencia = ConsoleUIHelper.askInt("Digite a agencia do veiculo");
+        veiculo.setAgencia(AgenciaDAO.getInstance().getIdByPosition(agencia));
 
         veiculo.setPlaca(placa);
         veiculo.setCor(cor);

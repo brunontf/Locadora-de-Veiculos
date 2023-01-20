@@ -36,6 +36,14 @@ public class PessoaController {
         }
     }
 
+    public void removerPessoa(Pessoa pessoa) {
+        if(pessoa != null){
+            pessoaDAO.removerPessoa(pessoa);
+        } else{
+            PessoaView.removerPessoa();
+        }
+    }
+
     public void listarClientes() {
         pessoaDAO.listarClientes();
     }

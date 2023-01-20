@@ -55,8 +55,8 @@ public class VeiculoController {
         VeiculoView.listar(veiculoDAO.getAll());
     }
 
-    public void listarVeiculosDisponiveis() {
-        VeiculoView.listar(veiculoDAO.getVeiculosDisponiveis());
+    public void listarVeiculosDisponiveis(String agencia) {
+        VeiculoView.listar(veiculoDAO.getVeiculosDisponiveis(agencia));
     }
 
     public void salvarVeiculos() throws IOException {

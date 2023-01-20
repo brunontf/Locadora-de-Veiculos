@@ -81,4 +81,9 @@ public class Aluguel implements Serializable {
     public void setHoraRetirada(String horaRetirada) {
         this.horaRetirada = horaRetirada;
     }
+
+    public String getAgenciaDevolucaoId() {
+        return agenciaDevolucaoId;
+    }
+    
 }

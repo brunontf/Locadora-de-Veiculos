@@ -16,6 +16,7 @@ public class MenuPessoa {
                     "Adicionar um novo cliente",
                     "Alterar tipo de cliente",
                     "Imprimir cliente",
+                    "Remover cliente",
                     "Salvar lista de clientes",
                     "Carregar lista de clientes",
                     "Retornar ao menu principal");
@@ -24,9 +25,10 @@ public class MenuPessoa {
                 case 0 -> pessoaController.addPessoa(null);
                 case 1 -> pessoaController.alterarTipoPessoa();
                 case 2 -> pessoaController.imprimirDadosPessoa();
-                case 3 -> pessoaController.salvarListaClientes();
-                case 4 -> pessoaController.carregarListaClientes();
-                case 5 -> naoRetornarAoMenuPrincipal = false;
+                case 3 -> pessoaController.removerPessoa(null);
+                case 4 -> pessoaController.salvarListaClientes();
+                case 5 -> pessoaController.carregarListaClientes();
+                case 6 -> naoRetornarAoMenuPrincipal = false;
             }
         } while (naoRetornarAoMenuPrincipal);
     }
