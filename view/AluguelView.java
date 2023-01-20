@@ -78,6 +78,7 @@ public class AluguelView {
         aluguelController.listar();
         int aluguelPosicao = ConsoleUIHelper.askInt("Selecione o aluguel de devolucao");
         ComprovanteView.menuDevolucao(AluguelDAO.getInstance().getAll().get(aluguelPosicao));
+        VeiculoDAO.getInstance().devolverAgenciaVeiculo(AluguelDAO.getInstance().getAll().get(aluguelPosicao));
         aluguelController.devolverPorId(aluguelPosicao);
 
 
