@@ -12,7 +12,7 @@ import util.ConsoleUIHelper;
 public class PessoaView {
     
     public static void imprimirCliente(Pessoa pessoa) {
-        System.out.println("Nome: "+pessoa.getNome());
+        System.out.println("\nNome: "+pessoa.getNome());
         System.out.println("Telefone: "+pessoa.getTelefone());
         System.out.println("Classe: "+pessoa.getClass().getSimpleName());
         if (pessoa.getClass() == PessoaFisica.class){
@@ -20,6 +20,7 @@ public class PessoaView {
         } else {
             System.out.println("CNPJ: "+((PessoaJuridica) pessoa).getCnpj());
         }
+        System.out.println();
     }
 
     public static void listarClientes(List<Pessoa> listaClientes) {
