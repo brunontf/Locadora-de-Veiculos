@@ -90,4 +90,11 @@ public class AluguelDAO implements Serializable {
         return String.format("%.2f", valorTotal);
     }
 
+    public String getDataRetirada(int index){
+        return alugueis.get(index).getDataRetirada();
+    }
+    public String getHoraRetirada(int index){
+        return alugueis.get(index).getHoraRetirada();
+    }
+
 }
