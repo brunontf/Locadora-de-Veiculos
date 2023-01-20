@@ -57,7 +57,7 @@ public class PessoaView {
     }
 
     public static void exibirDadosPessoa(Pessoa pessoa) {
-        System.out.print(pessoa.getNome() + " - " + pessoa.getClass().getSimpleName());
+        System.out.print(pessoa.getNome() + " - " + pessoa.getClass().getSimpleName()+"\n");
     }
 
     public static int askId() {

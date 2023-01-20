@@ -54,4 +54,14 @@ public class AluguelController {
     public String valorTotalDiarias(int index) {
         return aluguelDAO.valorTotalDiarias(index);
     }
+    public int getId(Aluguel aluguel){
+        return aluguelDAO.getIndexById(aluguel.getId());
+    }
+
+    public String getDataRetirada(int index){
+        return aluguelDAO.getDataRetirada(index);
+    }
+    public String getHoraRetirada(int index){
+        return aluguelDAO.getHoraRetirada(index);
+    }
 }

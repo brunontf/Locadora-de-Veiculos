@@ -90,6 +90,6 @@ public class AgenciaView {
         if(index != null) {
             System.out.print(index + ": ");
         }
-        System.out.printf("[" + agencia.toString() + "] ");
+        System.out.printf("%s\n", agencia.toString());
     }
 }
